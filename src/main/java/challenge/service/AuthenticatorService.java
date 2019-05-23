@@ -34,30 +34,20 @@ public class AuthenticatorService {
     public StatusReponseDTO validateCode(CredentialDTO credentialDTO) throws InvalidKeyException, NoSuchAlgorithmException {
         StatusReponseDTO dto = new StatusReponseDTO(false);
         long t = new Date().getTime() / TimeUnit.SECONDS.toMillis(30);
-        dto.setStatus(this.check_code(credentialDTO.getGeneratedKey(), credentialDTO.getAuthCode(), t));
+        dto.setStatus(this.check(credentialDTO.getGeneratedKey(), credentialDTO.getAuthCode(), t));
         return dto;
     }
 
-    private boolean check_code(String secret, long code, long t) throws NoSuchAlgorithmException, InvalidKeyException {
+    private boolean check(String secret, long code, long t) throws NoSuchAlgorithmException, InvalidKeyException {
         Base32 codec = new Base32();
         byte[] decodedKey = codec.decode(secret);
 
-        // Window is used to check codes generated in the near past.
-        // You can use this value to tune how far you're willing to go.
-        int window = 1;
-        for (int i = -window; i <= window; ++i) {
-            long hash = this.verify_code(decodedKey, t + i);
+        long hash = this.verify(decodedKey, t);
 
-            if (hash == code) {
-                return true;
-            }
-        }
-
-        // The validation code is invalid.
-        return false;
+        return (hash == code);
     }
 
-    private int verify_code(byte[] key, long t) throws NoSuchAlgorithmException, InvalidKeyException {
+    private int verify(byte[] key, long t) throws NoSuchAlgorithmException, InvalidKeyException {
         byte[] data = new byte[8];
         long value = t;
         for (int i = 8; i-- > 0; value >>>= 8) {
@@ -71,12 +61,9 @@ public class AuthenticatorService {
 
         int offset = hash[20 - 1] & 0xF;
 
-        // We're using a long because Java hasn't got unsigned int.
         long truncatedHash = 0;
         for (int i = 0; i < 4; ++i) {
             truncatedHash <<= 8;
-            // We are dealing with signed bytes:
-            // we just keep the first byte.
             truncatedHash |= (hash[offset + i] & 0xFF);
         }
 

@@ -22,14 +22,14 @@ public class ChallengeApiController {
 
     private final AuthenticatorService service;
 
-    @RequestMapping("/generateKey")
+    @GetMapping("/token")
     @ApiOperation(value = "Generates a key to two step verification", httpMethod = "GET", response = SecretKeyDTO.class)
     public ResponseEntity<SecretKeyDTO> generateKey() {
         SecretKeyDTO dto = this.service.generateKey();
         return ResponseEntity.ok(dto);
     }
 
-    @RequestMapping("/validateCode")
+    @PostMapping("/token")
     @ApiOperation(value = "Validates a key by auth code", httpMethod = "POST", response = StatusReponseDTO.class)
     public ResponseEntity<Object> validateCode(@Valid @RequestBody CredentialDTO credentialDTO)
             throws NoSuchAlgorithmException, InvalidKeyException {
