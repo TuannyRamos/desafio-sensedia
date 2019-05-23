@@ -4,6 +4,7 @@ import challenge.dto.CredentialDTO;
 import challenge.dto.SecretKeyDTO;
 import challenge.dto.StatusReponseDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base32;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticatorService {
 
     private static final int DEFAULT_SIZE_KEY = 20;
@@ -28,6 +30,8 @@ public class AuthenticatorService {
 
         String encodedKey = new Base32().encodeToString(buffer);
         SecretKeyDTO dto = new SecretKeyDTO(encodedKey);
+
+        log.info("The generated key is {}", dto.getSecretKey());
         return dto;
     }
 
@@ -35,10 +39,14 @@ public class AuthenticatorService {
         StatusReponseDTO dto = new StatusReponseDTO(false);
         long t = new Date().getTime() / TimeUnit.SECONDS.toMillis(30);
         dto.setStatus(this.check(credentialDTO.getGeneratedKey(), credentialDTO.getAuthCode(), t));
+
+        log.info("The status of validation is {}", dto.isStatus());
         return dto;
     }
 
     private boolean check(String secret, long code, long t) throws NoSuchAlgorithmException, InvalidKeyException {
+        log.info("Decoding the key. secret: {}, code: {}, t: {}", secret, code, t);
+
         Base32 codec = new Base32();
         byte[] decodedKey = codec.decode(secret);
 
@@ -48,6 +56,8 @@ public class AuthenticatorService {
     }
 
     private int verify(byte[] key, long t) throws NoSuchAlgorithmException, InvalidKeyException {
+        log.info("Checking the algorithm");
+
         byte[] data = new byte[8];
         long value = t;
         for (int i = 8; i-- > 0; value >>>= 8) {
