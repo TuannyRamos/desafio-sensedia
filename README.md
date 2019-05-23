@@ -34,7 +34,7 @@ http://localhost:8080/swagger-ui.html
 - Para gerar a key:
 ```
 curl -X GET \
-  http://localhost:8080/v1/token \
+  http://localhost:8080/v1/tokens \
   -H 'Cache-Control: no-cache' \
   -H 'Postman-Token: 2bb5065f-cf8e-4752-81da-24b8fedd1e8c'
 ```
@@ -42,7 +42,7 @@ curl -X GET \
 - Para autenticar:
 ```
 curl -X POST \
-  http://localhost:8080/v1/token \
+  http://localhost:8080/v1/tokens \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -H 'Postman-Token: 0e6c25b8-334c-44e5-bd7e-4f50bba94f0d' \
