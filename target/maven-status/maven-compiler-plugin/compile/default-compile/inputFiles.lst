@@ -1,5 +1,6 @@
 /dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/service/AuthenticatorService.java
+/dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/dto/StatusReponseDTO.java
 /dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/controller/ChallengeApiController.java
 /dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/dto/SecretKeyDTO.java
-/dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/dto/StatusDTO.java
 /dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/ChallengeApplication.java
+/dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/dto/CredentialDTO.java

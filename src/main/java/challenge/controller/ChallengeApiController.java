@@ -1,7 +1,8 @@
 package challenge.controller;
 
+import challenge.dto.CredentialDTO;
 import challenge.dto.SecretKeyDTO;
-import challenge.dto.StatusDTO;
+import challenge.dto.StatusReponseDTO;
 import challenge.service.AuthenticatorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 @Api
 @RestController
@@ -27,9 +30,10 @@ public class ChallengeApiController {
     }
 
     @RequestMapping("/validateCode")
-    @ApiOperation(value = "Validates a key by auth code", httpMethod = "POST", response = StatusDTO.class)
-    public ResponseEntity<Object> validateCode(@Valid @RequestBody String generatedKey) {
-        StatusDTO dto = new StatusDTO(true);
+    @ApiOperation(value = "Validates a key by auth code", httpMethod = "POST", response = StatusReponseDTO.class)
+    public ResponseEntity<Object> validateCode(@Valid @RequestBody CredentialDTO credentialDTO)
+            throws NoSuchAlgorithmException, InvalidKeyException {
+        StatusReponseDTO dto = this.service.validateCode(credentialDTO);
         return ResponseEntity.ok(dto);
     }
 }

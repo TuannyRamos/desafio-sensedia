@@ -23,6 +23,10 @@ Após isto basta seguir os passos abaixo:
 java -jar target/desafio-sensedia-0.1.0.jar
 ```
 
+# Swagger
+
+http://localhost:8080/swagger-ui.html
+
 # Para utilizar o projeto
 
 Basta abrir o navegador e acessar os seguintes endereços:

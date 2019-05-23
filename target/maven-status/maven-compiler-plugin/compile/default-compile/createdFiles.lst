@@ -1,5 +1,6 @@
+challenge/dto/StatusReponseDTO.class
 challenge/service/AuthenticatorService.class
+challenge/dto/CredentialDTO.class
 challenge/dto/SecretKeyDTO.class
-challenge/dto/StatusDTO.class
 challenge/controller/ChallengeApiController.class
 challenge/ChallengeApplication.class
