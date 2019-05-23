@@ -1,6 +1,7 @@
 challenge/dto/StatusReponseDTO.class
-challenge/service/AuthenticatorService.class
-challenge/dto/CredentialDTO.class
-challenge/dto/SecretKeyDTO.class
 challenge/controller/ChallengeApiController.class
 challenge/ChallengeApplication.class
+challenge/service/AuthenticatorService.class
+challenge/config/SwaggerConfig.class
+challenge/dto/CredentialDTO.class
+challenge/dto/SecretKeyDTO.class

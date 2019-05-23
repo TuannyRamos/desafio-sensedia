@@ -29,7 +29,7 @@ mvn clean install spring-boot:run
 
 http://localhost:8080/swagger-ui.html
 
-# Para executar o projeto, importar os seguintes no postman:
+# Para executar o projeto, importar o curl a seguir:
 
 - Para gerar a key:
 ```

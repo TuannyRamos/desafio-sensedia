@@ -4,3 +4,4 @@
 /dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/dto/SecretKeyDTO.java
 /dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/ChallengeApplication.java
 /dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/dto/CredentialDTO.java
+/dados/Projetos/Sensedia/desafio-sensedia/src/main/java/challenge/config/SwaggerConfig.java
